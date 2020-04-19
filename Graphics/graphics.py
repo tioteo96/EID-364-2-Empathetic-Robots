@@ -51,35 +51,48 @@ class Room_template(object):
         self.rect = pygame.Rect(self.x, self.y, self.x_len, self.y_len)
         self.vel = 1
         self.visible = False
+        self.ticker = 0
 
     def draw(self, WIN):
         if self.visible:
             pygame.draw.rect(win, (0, 255, 255), self.rect)
 
     def change_meas(self, KEYS):
-        if KEYS[pygame.K_KP4] :
-            self.x -= self.vel
-        if KEYS[pygame.K_KP6]:
-            self.x += self.vel
-        if KEYS[pygame.K_KP8]:
-            self.y -= self.vel
-        if KEYS[pygame.K_KP2]:
-            self.y += self.vel
-        if KEYS[pygame.K_KP0] and KEYS[pygame.K_KP6]:
-            self.x_len += self.vel
-        if KEYS[pygame.K_KP0] and KEYS[pygame.K_KP4]:
-            self.x_len -= self.vel
-        if KEYS[pygame.K_KP0] and KEYS[pygame.K_KP8]:
-            self.y_len += self.vel
-        if KEYS[pygame.K_KP0] and KEYS[pygame.K_KP2]:
-            self.y_len -= self.vel
-        if KEYS[pygame.K_KP_MULTIPLY]:
-            if self.visible:
-                self.visible = False
+        if KEYS[pygame.K_KP4]:
+            if KEYS[pygame.K_KP0]:
+                self.x_len -= self.vel
             else:
-                self.visible = True
-        if KEYS[pygame.K_KP_ENTER]:
-            print('x = {0} \ny = {1} \nx_len = {2} \ny_len = {3}\n\n'.format(self.x, self.y, self.x_len, self.y_len))
+                self.x -= self.vel
+        if KEYS[pygame.K_KP6]:
+            if KEYS[pygame.K_KP0]:
+                self.x_len += self.vel
+            else:
+                self.x += self.vel
+        if KEYS[pygame.K_KP8]:
+            if KEYS[pygame.K_KP0]:
+                self.y_len -= self.vel
+            else:
+                self.y -= self.vel
+        if KEYS[pygame.K_KP2]:
+            if KEYS[pygame.K_KP0]:
+                self.y_len += self.vel
+            else:
+                self.y += self.vel
+        if self.ticker == 0:
+            if KEYS[pygame.K_KP_MULTIPLY]:
+                self.ticker = self.ticker + 1
+                if self.visible:
+                    self.visible = False
+                else:
+                    self.visible = True
+            if KEYS[pygame.K_KP_ENTER]:
+                print('x = {0} \ny = {1} \nx_len = {2} \ny_len = {3}\n\n'.format(self.x, self.y, self.x_len, self.y_len))
+                self.ticker = self.ticker + 1
+        else:
+            self.ticker = self.ticker + 1
+            if self.ticker >= 15:
+                self.ticker = 0
+
         self.rect = pygame.Rect(self.x, self.y, self.x_len, self.y_len)
 
 class User(object):
@@ -105,16 +118,17 @@ class User(object):
 
     def track(self, KEYS, BP_SIZE, rooms, track_txt):
         for room in rooms:
-            if self.in_room(room):
-                if not room.occupied:
-                    print(self.name + " entered room: " + room.name)
-                    print(self.name + " entered room: " + room.name + "|" + time.asctime(), file=track_txt)
-                room.occupied = True
-            else:
+            if not self.in_room(room):
                 if room.occupied:
                     print(self.name + " left room: " + room.name)
                     print(self.name + " left room: " + room.name + "|" + time.asctime(), file=track_txt)
                 room.occupied = False
+            else:
+                if not room.occupied:
+                    print(self.name + " entered room: " + room.name)
+                    print(self.name + " entered room: " + room.name + "|" + time.asctime(), file=track_txt)
+                room.occupied = True
+
 
         if KEYS[pygame.K_LEFT] and self.x > self.vel + self.radius:
             self.x -= self.vel
@@ -160,7 +174,7 @@ win, bg = initialize(floor, bp_size)
 
 # mainloop
 Users = [User(200, 350, "Person1")]
-Rooms = [Room(200, 330, 150, 70, "Entrance"), Room(343,190,78,80,"103"), Room(419,192,58,78,"104")]
+Rooms = [Room(200, 330, 150, 70, "Entrance"), Room(343,190,78,80,"103"), Room(419,192,58,78,"104"), Room(477,194,45,75,"105")]
 room_temp  = Room_template()
 user_num = 0
 isLive = False
@@ -180,7 +194,7 @@ while run:
     # adding user
     if keys[pygame.K_SPACE]:
         if len(Users) < 5:
-            Users.append(User(200, 350))
+            Users.append(User(200, 350,"Person"+str(len(Users)+1)))
 
     # selecting user
     if keys[pygame.K_0]:
