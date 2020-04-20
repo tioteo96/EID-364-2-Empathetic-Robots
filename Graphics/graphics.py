@@ -87,9 +87,9 @@ class Room_template(object):
                     self.visible = True
             if KEYS[pygame.K_KP_ENTER]:
                 print('x = {0} \ny = {1} \nx_len = {2} \ny_len = {3}\n\n'.format(self.x, self.y, self.x_len, self.y_len))
-                self.ticker = self.ticker + 1
+                self.ticker += 1
         else:
-            self.ticker = self.ticker + 1
+            self.ticker += 1
             if self.ticker >= 15:
                 self.ticker = 0
 
@@ -121,12 +121,13 @@ class User(object):
             if not self.in_room(room):
                 if room.occupied:
                     print(self.name + " left room: " + room.name)
-                    print(self.name + " left room: " + room.name + "|" + time.asctime(), file=track_txt)
+                    print('{0}|left|{1}|{2}'.format(self.name,room.name,time.asctime()), file=track_txt)
                 room.occupied = False
             else:
+
                 if not room.occupied:
                     print(self.name + " entered room: " + room.name)
-                    print(self.name + " entered room: " + room.name + "|" + time.asctime(), file=track_txt)
+                    print('{0}|entered|{1}|{2}'.format(self.name,room.name,time.asctime()), file=track_txt)
                 room.occupied = True
 
 
@@ -172,9 +173,24 @@ bp = blueprint(1)
 floor, bp_size = bp.find_size(bp.floor)
 win, bg = initialize(floor, bp_size)
 
+# Load rooms from config
+Rooms = []
+with open('Room_info.txt') as f:
+    line = f.readline()
+    line_num = 1
+    while line:
+        room_vars = line.split(':')
+        if len(room_vars) != 5:
+            print("Error: Issue reading room config at line: " + str(line_num))
+            pygame.quit()
+            exit()
+        Rooms.append(Room( int(room_vars[0]), int(room_vars[1]), int(room_vars[2]), int(room_vars[3]), room_vars[4].rstrip("\n")))
+        line = f.readline()
+        line_num += 1
+
+
 # mainloop
 Users = [User(200, 350, "Person1")]
-Rooms = [Room(200, 330, 150, 70, "Entrance"), Room(343,190,78,80,"103"), Room(419,192,58,78,"104"), Room(477,194,45,75,"105")]
 room_temp  = Room_template()
 user_num = 0
 isLive = False
