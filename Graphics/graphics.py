@@ -1,5 +1,8 @@
 import pygame
 import time
+import glob
+from datetime import datetime
+import os
 from random import randint
 
 pygame.init()
@@ -105,6 +108,7 @@ class User(object):
         self.isNew = False
         self.color = (randint(0, 255), randint(0, 255), randint(0, 255))
         self.path = [(x, y)]
+        self.textfile = open('%s.txt' % name,"w")
 
     def in_room(self, room):
         x1, y1, w, h = room.rect
@@ -116,18 +120,18 @@ class User(object):
                 return True
         return False
 
-    def track(self, KEYS, BP_SIZE, rooms, track_txt):
+    def track(self, KEYS, BP_SIZE, rooms):
         for room in rooms:
             if not self.in_room(room):
                 if room.occupied:
                     print(self.name + " left room: " + room.name)
-                    print('{0}|left|{1}|{2}'.format(self.name,room.name,time.asctime()), file=track_txt)
+                    print('{0}|left|{1}|{2}'.format(self.name,room.name,time.asctime()), file=self.textfile)
                 room.occupied = False
             else:
 
                 if not room.occupied:
                     print(self.name + " entered room: " + room.name)
-                    print('{0}|entered|{1}|{2}'.format(self.name,room.name,time.asctime()), file=track_txt)
+                    print('{0}|entered|{1}|{2}'.format(self.name,room.name,time.asctime()), file=self.textfile)
                 room.occupied = True
 
 
@@ -188,21 +192,53 @@ with open('Room_info.txt') as f:
         line = f.readline()
         line_num += 1
 
+# Load data
+filepath = ".\Person*"
+txt = glob.glob(filepath)
+for textfile in txt:
+    if os.stat(textfile).st_size == 0:
+        break
+    f = open(textfile,'r')
+    line = f.readline()
+    while line and line.strip():
+        token1 = line.split('|')
+        token1[3] = token1[3].rstrip("\n")
 
-# mainloop
+        print(token1)
+
+        nextline = f.readline()
+        if len(nextline) != 0:
+            token2 = nextline.split('|')
+            token2[3] = token2[3].rstrip("\n")
+
+            print(token2)
+
+            next = True
+        else:
+            next = False
+            break
+        if next:
+            if token1[1] != token2[1] and token1[2] == token2[2]:
+                time1 = datetime.strptime(token1[3], '%c')
+                time2 = datetime.strptime(token2[3], '%c')
+                duration = time2 - time1
+                duration_sec = duration.total_seconds()
+                print(duration_sec)
+        line = f.readline()
+
+
 Users = [User(200, 350, "Person1")]
 room_temp  = Room_template()
 user_num = 0
 isLive = False
 run = True
-track_file = open(r"track.txt","w")
+# mainloop
 while run:
     # setting fps
     clock.tick(60)
     # closing window
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            track_file.close()
             run = False
 
     keys = pygame.key.get_pressed()
@@ -230,7 +266,7 @@ while run:
     elif keys[pygame.K_h]:
         isLive = False
     room_temp.change_meas(keys)
-    Users[user_num].track(keys, bp_size, Rooms, track_file)
+    Users[user_num].track(keys, bp_size, Rooms)
 
     redraw()
 
