@@ -15,9 +15,9 @@
     </option>
   </component>
   <component name="ProjectId" id="1aPgrKOEzByEWrTu66ybPYKi0HI" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -83,29 +83,33 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="184" y="81" width="1071" height="711" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586642964307">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
     <state x="184" y="81" width="1071" height="711" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.793@0.23.1440.793" timestamp="1586642964307" />
-    <state width="1398" height="203" key="GridCell.Tab.0.bottom" timestamp="1586725219958">
+    <state width="1398" height="203" key="GridCell.Tab.0.bottom" timestamp="1587969378108">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
-    <state width="1398" height="203" key="GridCell.Tab.0.bottom/0.23.1440.793@0.23.1440.793" timestamp="1586725219958" />
-    <state width="1398" height="203" key="GridCell.Tab.0.center" timestamp="1586725219957">
+    <state width="1398" height="203" key="GridCell.Tab.0.bottom/0.23.1440.793/1440.23.1920.1057@0.23.1440.793" timestamp="1587952612357" />
+    <state width="1398" height="203" key="GridCell.Tab.0.bottom/0.23.1440.793@0.23.1440.793" timestamp="1587969378108" />
+    <state width="1398" height="203" key="GridCell.Tab.0.center" timestamp="1587969378107">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
-    <state width="1398" height="203" key="GridCell.Tab.0.center/0.23.1440.793@0.23.1440.793" timestamp="1586725219957" />
-    <state width="1398" height="203" key="GridCell.Tab.0.left" timestamp="1586725219957">
+    <state width="1398" height="203" key="GridCell.Tab.0.center/0.23.1440.793/1440.23.1920.1057@0.23.1440.793" timestamp="1587952612356" />
+    <state width="1398" height="203" key="GridCell.Tab.0.center/0.23.1440.793@0.23.1440.793" timestamp="1587969378107" />
+    <state width="1398" height="203" key="GridCell.Tab.0.left" timestamp="1587969378107">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
-    <state width="1398" height="203" key="GridCell.Tab.0.left/0.23.1440.793@0.23.1440.793" timestamp="1586725219957" />
-    <state width="1398" height="203" key="GridCell.Tab.0.right" timestamp="1586725219957">
+    <state width="1398" height="203" key="GridCell.Tab.0.left/0.23.1440.793/1440.23.1920.1057@0.23.1440.793" timestamp="1587952612356" />
+    <state width="1398" height="203" key="GridCell.Tab.0.left/0.23.1440.793@0.23.1440.793" timestamp="1587969378107" />
+    <state width="1398" height="203" key="GridCell.Tab.0.right" timestamp="1587969378108">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
-    <state width="1398" height="203" key="GridCell.Tab.0.right/0.23.1440.793@0.23.1440.793" timestamp="1586725219957" />
+    <state width="1398" height="203" key="GridCell.Tab.0.right/0.23.1440.793/1440.23.1920.1057@0.23.1440.793" timestamp="1587952612357" />
+    <state width="1398" height="203" key="GridCell.Tab.0.right/0.23.1440.793@0.23.1440.793" timestamp="1587969378108" />
     <state x="75" y="53" width="1197" height="722" key="SettingsEditor" timestamp="1586643254154">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
@@ -116,6 +120,6 @@
     <state x="378" y="176" width="683" height="486" key="find.popup/0.23.1440.793@0.23.1440.793" timestamp="1586655651859" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Graphics$graphics.coverage" NAME="graphics Coverage Results" MODIFIED="1586643687317" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Graphics$graphics.coverage" NAME="graphics Coverage Results" MODIFIED="1587952598543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

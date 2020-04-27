@@ -45,6 +45,7 @@ class Room(object):
     def draw(self, WIN):
         pygame.draw.rect(win, (0, 0, 255), self.rect ,1)
 
+
 class Room_template(object):
     def __init__(self):
         self.x = 200
@@ -97,6 +98,7 @@ class Room_template(object):
                 self.ticker = 0
 
         self.rect = pygame.Rect(self.x, self.y, self.x_len, self.y_len)
+
 
 class User(object):
     def __init__(self, x, y, name):

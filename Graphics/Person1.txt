@@ -1,0 +1,9 @@
+Person1|entered|Entrance|Mon Apr 27 10:57:44 2020
+Person1|left|Entrance|Mon Apr 27 10:57:54 2020
+Person1|entered|Elevators|Mon Apr 27 10:57:55 2020
+Person1|left|Elevators|Mon Apr 27 10:58:01 2020
+Person1|entered|101_2|Mon Apr 27 10:58:07 2020
+Person1|left|101_2|Mon Apr 27 10:58:11 2020
+Person1|entered|101_1|Mon Apr 27 10:58:11 2020
+Person1|left|101_1|Mon Apr 27 10:58:14 2020
+Person1|entered|101_2|Mon Apr 27 10:58:15 2020
