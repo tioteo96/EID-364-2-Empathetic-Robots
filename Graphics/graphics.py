@@ -203,16 +203,10 @@ for textfile in txt:
     while line and line.strip():
         token1 = line.split('|')
         token1[3] = token1[3].rstrip("\n")
-
-        print(token1)
-
         nextline = f.readline()
         if len(nextline) != 0:
             token2 = nextline.split('|')
             token2[3] = token2[3].rstrip("\n")
-
-            print(token2)
-
             next = True
         else:
             next = False
@@ -223,7 +217,6 @@ for textfile in txt:
                 time2 = datetime.strptime(token2[3], '%c')
                 duration = time2 - time1
                 duration_sec = duration.total_seconds()
-                print(duration_sec)
         line = f.readline()
 
 
