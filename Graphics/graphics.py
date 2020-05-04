@@ -5,17 +5,6 @@ from datetime import datetime
 import os
 from random import randint
 
-pygame.init()
-
-BGs = [pygame.image.load('blueprint/B1_white.jpg'), pygame.image.load('blueprint/B2_white.jpg'),
-       pygame.image.load('blueprint/1_white.jpg'), pygame.image.load('blueprint/2_white.jpg'),
-       pygame.image.load('blueprint/3_white.jpg'), pygame.image.load('blueprint/4_white.jpg'),
-       pygame.image.load('blueprint/5_white.jpg'), pygame.image.load('blueprint/6_white.jpg'),
-       pygame.image.load('blueprint/7_white.jpg'), pygame.image.load('blueprint/8_white.jpg'),
-       pygame.image.load('blueprint/9_white.jpg'), ]
-
-clock = pygame.time.Clock()
-
 
 class blueprint(object):
     def __init__(self, FLOOR):
@@ -43,7 +32,7 @@ class Room(object):
         self.occupied = False
 
     def draw(self, WIN):
-        pygame.draw.rect(win, (0, 0, 255), self.rect ,1)
+        pygame.draw.rect(win, (0, 0, 255), self.rect, 1)
 
 
 class Room_template(object):
@@ -108,7 +97,7 @@ class User(object):
         self.radius = 1
         self.vel = 1
         self.isNew = False
-        self.color = (randint(0, 255), randint(0, 255), randint(0, 255))
+        self.color = (randint(100, 255), randint(100, 255), randint(100, 255))
         self.path = [(x, y)]
         self.textfile = open('%s.txt' % name,"w")
 
@@ -136,24 +125,30 @@ class User(object):
                     print('{0}|entered|{1}|{2}'.format(self.name,room.name,time.asctime()), file=self.textfile)
                 room.occupied = True
 
-
+        changed = False
         if KEYS[pygame.K_LEFT] and self.x > self.vel + self.radius:
             self.x -= self.vel
+            changed = True
         if KEYS[pygame.K_RIGHT] and self.x < BP_SIZE[0] - self.radius:
             self.x += self.vel
+            changed = True
         if KEYS[pygame.K_UP] and self.y > self.vel + self.radius:
             self.y -= self.vel
+            changed = True
         if KEYS[pygame.K_DOWN] and self.y < BP_SIZE[1] - self.radius:
             self.y += self.vel
-
-        self.path.append((self.x, self.y))
+            changed = True
+        if changed:
+            self.path.append((self.x, self.y))
 
     def draw(self, WIN, BG, isLIVE):
         if isLIVE:
-            pygame.draw.circle(WIN, self.color, self.path[-1], self.radius * 2)
+            pygame.draw.circle(WIN, self.color, self.path[-1], self.radius * 4)
         else:
             for trace in self.path:
-                pygame.draw.circle(WIN, self.color, trace, self.radius)
+                count = self.path.count(trace)
+                newColor = (self.color[0]//count, self.color[1]//count, self.color[2]//count)
+                pygame.draw.circle(WIN, newColor, trace, self.radius * 2 * count)
 
 
 def initialize(FLOOR, BP_SIZE):
@@ -164,7 +159,7 @@ def initialize(FLOOR, BP_SIZE):
     return WIN, BG
 
 
-def redraw():
+def redraw(Rooms):
     win.blit(bg, (0, 0))
     for user in Users:
         user.draw(win, bg, isLive)
@@ -174,63 +169,79 @@ def redraw():
     pygame.display.update()
 
 
+def loadRooms():
+    Rooms = []
+    with open('Room_info.txt') as f:
+        line = f.readline()
+        line_num = 1
+        while line:
+            room_vars = line.split(':')
+            if len(room_vars) != 5:
+                print("Error: Issue reading room config at line: " + str(line_num))
+                pygame.quit()
+                exit()
+            Rooms.append(Room(int(room_vars[0]), int(room_vars[1]), int(room_vars[2]), int(room_vars[3]),
+                              room_vars[4].rstrip("\n")))
+            line = f.readline()
+            line_num += 1
+    return Rooms
+
+
+def loadData():
+    # Load data
+    filepath = ".\Person*"
+    txt = glob.glob(filepath)
+    for textfile in txt:
+        if os.stat(textfile).st_size == 0:
+            break
+        f = open(textfile, 'r')
+        line = f.readline()
+        while line and line.strip():
+            token1 = line.split('|')
+            token1[3] = token1[3].rstrip("\n")
+
+            print(token1)
+
+            nextline = f.readline()
+            if len(nextline) != 0:
+                token2 = nextline.split('|')
+                token2[3] = token2[3].rstrip("\n")
+
+                print(token2)
+
+                next = True
+            else:
+                next = False
+                break
+            if next:
+                if token1[1] != token2[1] and token1[2] == token2[2]:
+                    time1 = datetime.strptime(token1[3], '%c')
+                    time2 = datetime.strptime(token2[3], '%c')
+                    duration = time2 - time1
+                    duration_sec = duration.total_seconds()
+                    print(duration_sec)
+            line = f.readline()
+
+
 # initial set up
+pygame.init()
+BGs = [pygame.image.load('blueprint/B1_white.jpg'), pygame.image.load('blueprint/B2_white.jpg'),
+       pygame.image.load('blueprint/1_white.jpg'), pygame.image.load('blueprint/2_white.jpg'),
+       pygame.image.load('blueprint/3_white.jpg'), pygame.image.load('blueprint/4_white.jpg'),
+       pygame.image.load('blueprint/5_white.jpg'), pygame.image.load('blueprint/6_white.jpg'),
+       pygame.image.load('blueprint/7_white.jpg'), pygame.image.load('blueprint/8_white.jpg'),
+       pygame.image.load('blueprint/9_white.jpg'), ]
+clock = pygame.time.Clock()
 bp = blueprint(1)
 floor, bp_size = bp.find_size(bp.floor)
 win, bg = initialize(floor, bp_size)
 
-# Load rooms from config
-Rooms = []
-with open('Room_info.txt') as f:
-    line = f.readline()
-    line_num = 1
-    while line:
-        room_vars = line.split(':')
-        if len(room_vars) != 5:
-            print("Error: Issue reading room config at line: " + str(line_num))
-            pygame.quit()
-            exit()
-        Rooms.append(Room( int(room_vars[0]), int(room_vars[1]), int(room_vars[2]), int(room_vars[3]), room_vars[4].rstrip("\n")))
-        line = f.readline()
-        line_num += 1
-
-# Load data
-filepath = ".\Person*"
-txt = glob.glob(filepath)
-for textfile in txt:
-    if os.stat(textfile).st_size == 0:
-        break
-    f = open(textfile,'r')
-    line = f.readline()
-    while line and line.strip():
-        token1 = line.split('|')
-        token1[3] = token1[3].rstrip("\n")
-
-        print(token1)
-
-        nextline = f.readline()
-        if len(nextline) != 0:
-            token2 = nextline.split('|')
-            token2[3] = token2[3].rstrip("\n")
-
-            print(token2)
-
-            next = True
-        else:
-            next = False
-            break
-        if next:
-            if token1[1] != token2[1] and token1[2] == token2[2]:
-                time1 = datetime.strptime(token1[3], '%c')
-                time2 = datetime.strptime(token2[3], '%c')
-                duration = time2 - time1
-                duration_sec = duration.total_seconds()
-                print(duration_sec)
-        line = f.readline()
+Rooms = loadRooms()
+loadData()
 
 
 Users = [User(200, 350, "Person1")]
-room_temp  = Room_template()
+room_temp = Room_template()
 user_num = 0
 isLive = False
 run = True
@@ -265,11 +276,12 @@ while run:
     # selecting mode (live, history)
     if keys[pygame.K_l]:
         isLive = True
+        print('Hello World')
     elif keys[pygame.K_h]:
         isLive = False
     room_temp.change_meas(keys)
     Users[user_num].track(keys, bp_size, Rooms)
 
-    redraw()
+    redraw(Rooms)
 
 pygame.quit()
