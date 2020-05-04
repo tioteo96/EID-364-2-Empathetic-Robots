@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="35974511-70a2-4da8-9904-72622a2d22f4" name="Default Changelist" comment="" />
+    <list default="true" id="35974511-70a2-4da8-9904-72622a2d22f4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Person1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Person1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +18,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1aPgrKOEzByEWrTu66ybPYKi0HI" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -21,7 +28,9 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.buildTools.grunt.grunt-cli.package" value="" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="" />
@@ -79,6 +88,10 @@
       <option name="presentableId" value="Default" />
       <updated>1586642840288</updated>
       <workItem from="1586642843874" duration="20497000" />
+      <workItem from="1587989500683" duration="3208000" />
+      <workItem from="1588033391503" duration="454000" />
+      <workItem from="1588508082805" duration="3000" />
+      <workItem from="1588596521195" duration="4502000" />
     </task>
     <servers />
   </component>
@@ -90,26 +103,30 @@
       <screen x="0" y="23" width="1440" height="793" />
     </state>
     <state x="184" y="81" width="1071" height="711" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.793@0.23.1440.793" timestamp="1586642964307" />
-    <state width="1398" height="203" key="GridCell.Tab.0.bottom" timestamp="1587969378108">
+    <state x="458" y="173" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1587992410959">
+      <screen x="0" y="23" width="1440" height="793" />
+    </state>
+    <state x="458" y="173" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.793@0.23.1440.793" timestamp="1587992410959" />
+    <state width="1398" height="203" key="GridCell.Tab.0.bottom" timestamp="1588032282061">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.bottom/0.23.1440.793/1440.23.1920.1057@0.23.1440.793" timestamp="1587952612357" />
-    <state width="1398" height="203" key="GridCell.Tab.0.bottom/0.23.1440.793@0.23.1440.793" timestamp="1587969378108" />
-    <state width="1398" height="203" key="GridCell.Tab.0.center" timestamp="1587969378107">
+    <state width="1398" height="203" key="GridCell.Tab.0.bottom/0.23.1440.793@0.23.1440.793" timestamp="1588032282061" />
+    <state width="1398" height="203" key="GridCell.Tab.0.center" timestamp="1588032282060">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.center/0.23.1440.793/1440.23.1920.1057@0.23.1440.793" timestamp="1587952612356" />
-    <state width="1398" height="203" key="GridCell.Tab.0.center/0.23.1440.793@0.23.1440.793" timestamp="1587969378107" />
-    <state width="1398" height="203" key="GridCell.Tab.0.left" timestamp="1587969378107">
+    <state width="1398" height="203" key="GridCell.Tab.0.center/0.23.1440.793@0.23.1440.793" timestamp="1588032282060" />
+    <state width="1398" height="203" key="GridCell.Tab.0.left" timestamp="1588032282060">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.left/0.23.1440.793/1440.23.1920.1057@0.23.1440.793" timestamp="1587952612356" />
-    <state width="1398" height="203" key="GridCell.Tab.0.left/0.23.1440.793@0.23.1440.793" timestamp="1587969378107" />
-    <state width="1398" height="203" key="GridCell.Tab.0.right" timestamp="1587969378108">
+    <state width="1398" height="203" key="GridCell.Tab.0.left/0.23.1440.793@0.23.1440.793" timestamp="1588032282060" />
+    <state width="1398" height="203" key="GridCell.Tab.0.right" timestamp="1588032282060">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.right/0.23.1440.793/1440.23.1920.1057@0.23.1440.793" timestamp="1587952612357" />
-    <state width="1398" height="203" key="GridCell.Tab.0.right/0.23.1440.793@0.23.1440.793" timestamp="1587969378108" />
+    <state width="1398" height="203" key="GridCell.Tab.0.right/0.23.1440.793@0.23.1440.793" timestamp="1588032282060" />
     <state x="75" y="53" width="1197" height="722" key="SettingsEditor" timestamp="1586643254154">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
@@ -120,6 +137,6 @@
     <state x="378" y="176" width="683" height="486" key="find.popup/0.23.1440.793@0.23.1440.793" timestamp="1586655651859" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Graphics$graphics.coverage" NAME="graphics Coverage Results" MODIFIED="1587952598543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Graphics$graphics.coverage" NAME="graphics Coverage Results" MODIFIED="1587992259821" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
